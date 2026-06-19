@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dialekto – Philippine Dialect Translator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+  <div class="shell">
+
+    <!-- ════════════════════════════════════════════════════════
+       SCREEN 1 — ONBOARDING
+  ════════════════════════════════════════════════════════ -->
+    <div class="screen active" id="screen-onboarding">
+      <div class="ob-hero">
+        <div class="ob-logo">🗣️</div>
+        <div class="ob-brand">Dialekto</div>
+        <div class="ob-tagline">Translate across Philippine dialects — voice to voice, in seconds.</div>
+      </div>
+
+      <div class="ob-card">
+        <div class="ob-step-label">Step 1 of 3 — Your language</div>
+        <div class="ob-step-title">Pick your primary dialect</div>
+        <div class="dialect-grid" id="dialect-grid">
+          <div class="dialect-chip selected" data-lang="Tagalog">🇵🇭 Tagalog</div>
+          <div class="dialect-chip" data-lang="Cebuano">Cebuano</div>
+          <div class="dialect-chip" data-lang="Ilocano">Ilocano</div>
+          <div class="dialect-chip" data-lang="Waray">Waray</div>
+          <div class="dialect-chip" data-lang="Kapampangan">Kapampangan</div>
+          <div class="dialect-chip" data-lang="Hiligaynon">Hiligaynon</div>
+        </div>
+        <div>
+          <div class="section-hd mt12" style="margin-bottom:8px">
+            <span class="fw7 fs13">Download language packs</span>
+            <span class="offline-badge">📶 Offline ready</span>
+          </div>
+          <div
+            style="background:var(--grey-50);border-radius:10px;padding:10px 13px;display:flex;align-items:center;gap:10px;border:1px solid var(--grey-100);">
+            <span style="font-size:20px">📦</span>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:600;color:var(--grey-900)">Recommended packs</div>
+              <div style="font-size:11px;color:var(--grey-400)">~42 MB · 6 dialects</div>
+            </div>
+            <button class="btn btn-secondary" style="padding:7px 14px;font-size:12px;"
+              onclick="showToast('Packs downloaded! ✓')">Download</button>
+          </div>
+        </div>
+        <div
+          style="background:var(--blue-50);border-radius:10px;padding:11px 14px;display:flex;align-items:center;gap:10px;border:1px solid var(--blue-100);">
+          <span style="font-size:20px">🎙️</span>
+          <div style="flex:1;font-size:13px;font-weight:500;color:var(--grey-600)">Enable microphone for voice
+            translation</div>
+          <button class="toggle on" onclick="this.classList.toggle('on')"></button>
+        </div>
+      </div>
+
+      <div class="ob-footer">
+        <div class="ob-dots">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <button class="btn btn-primary btn-full" onclick="goToScreen('screen-home')">Get started →</button>
+        <button class="btn btn-ghost btn-full" onclick="goToScreen('screen-home')">Skip for now</button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+       SCREEN 2 — HOME DASHBOARD
+  ════════════════════════════════════════════════════════ -->
+    <div class="screen" id="screen-home">
+      <div class="status-bar">
+        <span>9:41</span>
+        <span class="sb-icons">
+          <svg width="16" height="12" viewBox="0 0 24 18" fill="none">
+            <path d="M12 3C8 3 4.5 4.8 2 7.6L4 9.6C6 7.3 8.8 6 12 6s6 1.3 8 3.6l2-2C19.5 4.8 16 3 12 3z" fill="white"
+              opacity=".5" />
+            <path d="M12 8c-2.5 0-4.7 1-6.3 2.7l2 2C8.9 11.6 10.4 11 12 11s3.1.6 4.3 1.7l2-2C16.7 9 14.5 8 12 8z"
+              fill="white" opacity=".75" />
+            <path d="M12 13c-1.2 0-2.3.5-3.1 1.3l3.1 3.1 3.1-3.1C14.3 13.5 13.2 13 12 13z" fill="white" />
+          </svg>
+          <svg width="22" height="12" viewBox="0 0 33 16" fill="none">
+            <rect x="0.5" y="0.5" width="28" height="15" rx="3.5" stroke="white" stroke-opacity=".5" />
+            <rect x="2" y="2" width="22" height="12" rx="2" fill="white" />
+            <path d="M30 5v6a3 3 0 000-6z" fill="white" opacity=".4" />
+          </svg>
+        </span>
+      </div>
+
+      <div class="home-header">
+        <div class="home-header-row">
+          <div class="home-logo-row">
+            <!-- Logo icon: speech bubble with waveform -->
+            <div class="home-logo-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M20 2H4C2.9 2 2 2.9 2 4V16C2 17.1 2.9 18 4 18H8L12 22L16 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z"
+                  fill="white" />
+                <rect x="7" y="8" width="1.5" height="5" rx="0.75" fill="#0a80c8" />
+                <rect x="10" y="6" width="1.5" height="9" rx="0.75" fill="#0a80c8" />
+                <rect x="13" y="9" width="1.5" height="4" rx="0.75" fill="#0a80c8" />
+                <rect x="16" y="7" width="1.5" height="7" rx="0.75" fill="#0a80c8" />
+              </svg>
+            </div>
+            <span class="home-logo-text">Dialekto</span>
+          </div>
+          <div class="home-header-right">
+            <!-- User profile button -->
+            <button class="home-icon-btn"
+              onclick="setNav(document.querySelector('#screen-home .nav-item:last-child'),'screen-account')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="8" r="4.5" fill="white" />
+                <path d="M3 20C3 16.5 7 13.5 12 13.5C17 13.5 21 16.5 21 20" stroke="white" stroke-width="2.2"
+                  stroke-linecap="round" />
+              </svg>
+            </button>
+            <!-- Bell notification button -->
+            <button class="home-icon-btn" onclick="showToast('No new notifications')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3C8.5 3 6 5.8 6 9.5L5 17H19L18 9.5C18 5.8 15.5 3 12 3Z" fill="white" />
+                <path d="M5 17H19" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M9.5 17C9.5 18.9 10.6 20 12 20C13.4 20 14.5 18.9 14.5 17" fill="white" />
+              </svg>
+              <div class="notif-dot"></div>
+            </button>
+          </div>
+        </div>
+        <div class="search-wrap">
+          <span class="search-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11" cy="11" r="7" stroke="rgba(255,255,255,0.7)" stroke-width="2.2" />
+              <path d="M16.5 16.5L21 21" stroke="rgba(255,255,255,0.7)" stroke-width="2.5" stroke-linecap="round" />
+            </svg>
+          </span>
+          <input type="text" placeholder="Search phrases, dialects, or tips…" />
+        </div>
+      </div>
+
+      <div class="scroll-body">
+        <!-- Urgent Kit -->
+        <div class="urgent-kit" onclick="goToScreen('screen-urgent')">
+          <div class="urgent-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 20H22L12 2Z" fill="white" opacity="0.9" />
+              <rect x="11" y="9" width="2" height="6" rx="1" fill="#FF4D4F" />
+              <rect x="11" y="16.5" width="2" height="2" rx="1" fill="#FF4D4F" />
+            </svg>
+          </div>
+          <div class="urgent-text">
+            <div class="title">Urgent Communication Kit</div>
+            <div class="sub">Quick-access emergency &amp; help phrases</div>
+          </div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="margin-left:auto;flex-shrink:0">
+            <path d="M9 6L15 12L9 18" stroke="#FF4D4F" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+
+        <!-- Translate Box -->
+        <div class="translate-box" style="margin-top:16px">
+          <div class="dialect-row">
+            <select class="dialect-select" id="src-lang">
+              <option>Tagalog</option>
+              <option>Cebuano</option>
+              <option>Ilocano</option>
+              <option>Waray</option>
+              <option>Kapampangan</option>
+              <option>Hiligaynon</option>
+            </select>
+            <button class="swap-btn" id="swap-btn" onclick="swapLanguages()">⇄</button>
+            <select class="dialect-select" id="tgt-lang">
+              <option>Cebuano</option>
+              <option>Tagalog</option>
+              <option>Ilocano</option>
+              <option>Waray</option>
+              <option>Kapampangan</option>
+              <option>Hiligaynon</option>
+            </select>
+          </div>
+          <div class="translate-input-area">
+            <textarea id="translate-input" rows="3" placeholder="Type something to translate…"></textarea>
+          </div>
+          <div class="translate-actions">
+            <button class="action-icon-btn" title="Code-switching mode"
+              onclick="showToast('Code-switching mode on 🔀')">🔀</button>
+            <button class="action-icon-btn" title="Cultural tips"
+              onclick="showToast('Showing cultural context 📖')">📖</button>
+            <button class="action-icon-btn" title="Context suggestions" onclick="showContextMenu()">💡</button>
+            <button class="btn btn-primary" onclick="doTranslate()">Translate</button>
+          </div>
+        </div>
+
+        <!-- Output Box -->
+        <div class="output-box" id="output-box">
+          <div class="output-lang-label" id="output-lang-label">Cebuano translation</div>
+          <div class="output-text" id="output-text"></div>
+          <div class="output-actions">
+            <button class="output-btn output-btn-play" onclick="playTranslationAudio()">▶ Play</button>
+            <button class="output-btn output-btn-save" onclick="showToast('Saved to phrases ✓')">🔖 Save</button>
+            <button class="output-btn output-btn-share" onclick="showToast('Copied to clipboard ✓')">↗ Share</button>
+          </div>
+          <audio id="translation-audio" preload="auto"></audio>
+        </div>
+
+        <!-- Mic -->
+        <div class="mic-section">
+          <div class="mic-label">or use your voice</div>
+          <button class="mic-btn" id="mic-btn" onclick="toggleMic()">🎙️</button>
+          <div class="mic-label" id="mic-status">Tap to speak</div>
+        </div>
+
+        <!-- Quick Phrases -->
+        <div class="home-section mt16">
+          <div class="section-hd">
+            <span class="section-title">Common Phrases</span>
+            <a class="section-link" onclick="goToScreen('screen-phrases')">See all →</a>
+          </div>
+          <div class="phrase-scroll">
+            <div class="phrase-chip" onclick="fillPhrase('Salamat')">👋 Salamat</div>
+            <div class="phrase-chip" onclick="fillPhrase('Kumusta ka?')">😊 Kumusta?</div>
+            <div class="phrase-chip" onclick="fillPhrase('Saan ang banyo?')">🚻 Banyo?</div>
+            <div class="phrase-chip" onclick="fillPhrase('Magkano ito?')">💰 Magkano?</div>
+            <div class="phrase-chip" onclick="fillPhrase('Huwag kang umalis.')">✋ Huwag</div>
+            <div class="phrase-chip" onclick="fillPhrase('Tulungan mo ako.')">🙏 Tulong</div>
+          </div>
+        </div>
+
+        <!-- Context Suggestions -->
+        <div class="home-section mt16">
+          <div class="section-hd">
+            <span class="section-title">Context Suggestions</span>
+            <span class="pill pill-blue">💡 Smart</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="tip-card" onclick="fillPhrase('Pwede ba akong pumunta ng banyo?')">
+              <div class="tip-icon">✈️</div>
+              <div>
+                <div class="tip-title">Travel</div>
+                <div class="tip-body">Useful phrases for airports, buses, and asking for directions.</div>
+              </div>
+            </div>
+            <div class="tip-card" onclick="fillPhrase('Ilan ang presyo nito?')">
+              <div class="tip-icon">🛒</div>
+              <div>
+                <div class="tip-title">Markets & Shopping</div>
+                <div class="tip-body">Bargaining, prices, and product inquiries at local markets.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cultural Tips -->
+        <div class="home-section mt16" style="padding-bottom:0">
+          <div class="section-hd">
+            <span class="section-title">Cultural Tips</span>
+            <span class="pill pill-teal">🌴 Regional</span>
+          </div>
+          <div class="tip-card" style="margin-bottom:16px">
+            <div class="tip-icon">🤝</div>
+            <div>
+              <div class="tip-title">Mano Po — Cebuano custom</div>
+              <div class="tip-body">"Mano po" is a gesture of respect to elders. In Cebu, it's called "pag-ampo" and
+                carries the same significance.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pronunciation Practice -->
+        <div class="home-section" style="padding-bottom:0">
+          <div class="section-hd">
+            <span class="section-title">Pronunciation Practice</span>
+            <a class="section-link" onclick="goToScreen('screen-practice')">Open →</a>
+          </div>
+          <div
+            style="background:var(--blue-50);border:1px solid var(--blue-100);border-radius:var(--radius-md);padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;margin-bottom:16px;"
+            onclick="goToScreen('screen-practice')">
+            <span style="font-size:28px">🔊</span>
+            <div style="flex:1">
+              <div style="font-size:14px;font-weight:700;color:var(--blue-700)">Practice today's word</div>
+              <div style="font-size:13px;color:var(--grey-400);margin-top:2px">"Maayong buntag" — Good morning in
+                Cebuano</div>
+            </div>
+            <span style="color:var(--blue-400);font-size:18px">›</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Nav -->
+      <div class="bottom-nav">
+        <button class="nav-item active" onclick="setNav(this,'screen-home')">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item" onclick="setNav(this,'screen-phrases')">
+          <span class="nav-icon">📚</span>
+          <span class="nav-label">Phrases</span>
+        </button>
+        <button class="nav-item" onclick="setNav(this,'screen-settings')">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">Settings</span>
+        </button>
+        <button class="nav-item" onclick="setNav(this,'screen-account')">
+          <span class="nav-icon">👤</span>
+          <span class="nav-label">Account</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+       SCREEN 3 — PHRASES LIBRARY
+  ════════════════════════════════════════════════════════ -->
+    <div class="screen" id="screen-phrases">
+      <div class="status-bar"><span>9:41</span><span class="sb-icons">
+          <svg width="16" height="12" viewBox="0 0 24 18" fill="none">
+            <path d="M12 3C8 3 4.5 4.8 2 7.6L4 9.6C6 7.3 8.8 6 12 6s6 1.3 8 3.6l2-2C19.5 4.8 16 3 12 3z" fill="white"
+              opacity=".5" />
+            <path d="M12 8c-2.5 0-4.7 1-6.3 2.7l2 2C8.9 11.6 10.4 11 12 11s3.1.6 4.3 1.7l2-2C16.7 9 14.5 8 12 8z"
+              fill="white" opacity=".75" />
+            <path d="M12 13c-1.2 0-2.3.5-3.1 1.3l3.1 3.1 3.1-3.1C14.3 13.5 13.2 13 12 13z" fill="white" />
+          </svg>
+          <svg width="22" height="12" viewBox="0 0 33 16" fill="none">
+            <rect x="0.5" y="0.5" width="28" height="15" rx="3.5" stroke="white" stroke-opacity=".5" />
+            <rect x="2" y="2" width="22" height="12" rx="2" fill="white" />
+            <path d="M30 5v6a3 3 0 000-6z" fill="white" opacity=".4" />
+          </svg>
+        </span></div>
+      <div class="top-bar">
+        <span class="bar-title">📚 Phrase Library</span>
+        <button class="bar-action" onclick="showToast('New group created ✓')">+ Group</button>
+      </div>
+
+      <div class="lib-search-wrap">
+        <div class="lib-search">
+          <span>🔍</span>
+          <input type="text" placeholder="Search phrases…" oninput="filterPhrases(this.value)" />
+        </div>
+      </div>
+
+      <div class="lib-categories">
+        <div class="cat-chip active" onclick="setCat(this,'all')">All</div>
+        <div class="cat-chip" onclick="setCat(this,'greetings')">Greetings</div>
+        <div class="cat-chip" onclick="setCat(this,'travel')">Travel</div>
+        <div class="cat-chip" onclick="setCat(this,'market')">Market</div>
+        <div class="cat-chip" onclick="setCat(this,'emergency')">Emergency</div>
+        <div class="cat-chip" onclick="setCat(this,'saved')">⭐ Saved</div>
+      </div>
+
+      <div class="scroll-body" style="padding-bottom:90px">
+        <div class="phrase-group" id="phrase-list">
+
+          <div class="group-header">
+            <span class="group-name">👋 Greetings</span>
+            <span class="pill pill-blue">6</span>
+          </div>
+          <div class="phrase-row">
+            <div class="phrase-txt-col">
+              <div class="phrase-original">Maayong buntag</div>
+              <div class="phrase-translation">Good morning (Cebuano)</div>
+            </div>
+            <button class="phrase-play-btn" onclick="showToast('▶ Playing…')">▶</button>
+            <button class="phrase-bookmark" onclick="toggleBookmark(this)">🔖</button>
+          </div>
+          <div class="phrase-row">
+            <div class="phrase-txt-col">
+              <div class="phrase-original">Kumusta ka?</div>
+              <div class="phrase-translation">How are you? (Filipino)</div>
+            </div>
+            <button class="phrase-play-btn" onclick="showToast('▶ Playing…')">▶</button>
+            <button class="phrase-bookmark saved" onclick="toggleBookmark(this)">🔖</button>
+          </div>
+          <div class="phrase-row">
+            <div class="phrase-txt-col">
+              <div class="phrase-original">Naimbag a bigat</div>
+              <div class="phrase-translation">Good morning (Ilocano)</div>
+            </div>
+            <button class="phrase-play-btn" onclick="showToast('▶ Playing…')">▶</button>
+            <button class="phrase-bookmark" onclick="toggleBookmark(this)">🔖</button>
+          </div>
+          <div class="phrase-row">
+            <div class="phrase-txt-col">
+              <div class="phrase-original">Maupay nga aga</div>
+              <div class="phrase-translation">Good morning (Waray)</div>
+            </div>
+            <button class="phrase-play-btn" onclick="showToast('▶ Playing…')">▶</button>
+            <button class="phrase-bookmark" onclick="toggleBookmark(this)">🔖</button>
+          </div>
+
+          <div class="group-header" style="margin-top:8px">
+            <span class="group-name">✈️ Travel</span>
+            <span class="pill pill-teal">4</span>
+          </div>
+          <div class="phrase-row">
+            <div class="phrase-txt-col">
+              <div class="phrase-original">Asa ang CR?</div>
+              <div class="phrase-translation">Where is the restroom? (Cebuano)</div>
+            </div>
+            <button class="phrase-play-btn" onclick="showToast('▶ Playing…')">▶</button>
+            <button class="phrase-bookmark" onclick="toggleBookmark(this)">🔖</button>
+          </div>
+          <div class="phrase-row">
+            <div class="phrase-txt-col">
+              <div class="phrase-original">Magkano ang pamasahe?</div>
+              <div class="phrase-translation">How much is the fare? (Filipino)</div>
+            </div>
+            <button class="phrase-play-btn" onclick="showToast('▶ Playing…')">▶</button>
+            <button class="phrase-bookmark saved" onclick="toggleBookmark(this)">🔖</button>
+          </div>
+          <div class="phrase-row">
+            <div class="phrase-txt-col">
+              <div class="phrase-original">Hain ti jeepney?</div>
+              <div class="phrase-translation">Where's the jeepney? (Ilocano)</div>
+            </div>
+            <button class="phrase-play-btn" onclick="showToast('▶ Playing…')">▶</button>
+            <button class="phrase-bookmark" onclick="toggleBookmark(this)">🔖</button>
+          </div>
+
+          <div class="group-header" style="margin-top:8px">
+            <span class="group-name">🛒 Market</span>
+            <span class="pill pill-amber">3</span>
+          </div>
+          <div class="phrase-row">
+            <div class="phrase-txt-col">
+              <div class="phrase-original">Ilan ang presyo?</div>
+              <div class="phrase-translation">How much is this? (Filipino)</div>
+            </div>
+            <button class="phrase-play-btn" onclick="showToast('▶ Playing…')">▶</button>
+            <button class="phrase-bookmark" onclick="toggleBookmark(this)">🔖</button>
+          </div>
+          <div class="phrase-row">
+            <div class="phrase-txt-col">
+              <div class="phrase-original">Pwede bang tawaran?</div>
+              <div class="phrase-translation">Can we bargain? (Filipino)</div>
+            </div>
+            <button class="phrase-play-btn" onclick="showToast('▶ Playing…')">▶</button>
+            <button class="phrase-bookmark" onclick="toggleBookmark(this)">🔖</button>
+          </div>
+
+        </div><!-- end phrase-list -->
+
+        <div class="add-group-btn" onclick="showToast('New phrase group created ✓')">
+          + Create new phrase group
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <button class="nav-item" onclick="setNav(this,'screen-home')"><span class="nav-icon">🏠</span><span
+            class="nav-label">Home</span></button>
+        <button class="nav-item active" onclick="setNav(this,'screen-phrases')"><span class="nav-icon">📚</span><span
+            class="nav-label">Phrases</span></button>
+        <button class="nav-item" onclick="setNav(this,'screen-settings')"><span class="nav-icon">⚙️</span><span
+            class="nav-label">Settings</span></button>
+        <button class="nav-item" onclick="setNav(this,'screen-account')"><span class="nav-icon">👤</span><span
+            class="nav-label">Account</span></button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+       SCREEN 4 — SETTINGS
+  ════════════════════════════════════════════════════════ -->
+    <div class="screen" id="screen-settings">
+      <div class="status-bar"><span>9:41</span><span class="sb-icons">
+          <svg width="16" height="12" viewBox="0 0 24 18" fill="none">
+            <path d="M12 3C8 3 4.5 4.8 2 7.6L4 9.6C6 7.3 8.8 6 12 6s6 1.3 8 3.6l2-2C19.5 4.8 16 3 12 3z" fill="white"
+              opacity=".5" />
+            <path d="M12 8c-2.5 0-4.7 1-6.3 2.7l2 2C8.9 11.6 10.4 11 12 11s3.1.6 4.3 1.7l2-2C16.7 9 14.5 8 12 8z"
+              fill="white" opacity=".75" />
+            <path d="M12 13c-1.2 0-2.3.5-3.1 1.3l3.1 3.1 3.1-3.1C14.3 13.5 13.2 13 12 13z" fill="white" />
+          </svg>
+          <svg width="22" height="12" viewBox="0 0 33 16" fill="none">
+            <rect x="0.5" y="0.5" width="28" height="15" rx="3.5" stroke="white" stroke-opacity=".5" />
+            <rect x="2" y="2" width="22" height="12" rx="2" fill="white" />
+            <path d="M30 5v6a3 3 0 000-6z" fill="white" opacity=".4" />
+          </svg>
+        </span></div>
+      <div class="settings-header">
+        <div class="settings-title-row">
+          <span style="font-size:24px">⚙️</span>
+          <h1>Settings</h1>
+        </div>
+        <div class="settings-user-card">
+          <div class="settings-avatar">👤</div>
+          <div>
+            <div class="settings-user-name">Juan dela Cruz</div>
+            <div class="settings-user-sub">Free Plan · Filipino primary</div>
+          </div>
+          <button class="settings-edit-btn" onclick="goToScreen('screen-account')">View →</button>
+        </div>
+      </div>
+
+      <div class="settings-body">
+        <div class="settings-section">
+          <div class="settings-section-title">Language</div>
+          <div class="settings-item">
+            <div class="settings-item-icon icon-blue">🌐</div>
+            <div class="settings-item-text">
+              <div class="settings-item-label">Primary Dialect</div>
+              <div class="settings-item-sub">Filipino (Tagalog)</div>
+            </div>
+            <span class="settings-item-right">›</span>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-icon icon-teal">📦</div>
+            <div class="settings-item-text">
+              <div class="settings-item-label">Downloaded Packs</div>
+              <div class="settings-item-sub">6 dialects · 42 MB</div>
+            </div>
+            <span class="settings-item-right">›</span>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-icon icon-blue">💬</div>
+            <div class="settings-item-text">
+              <div class="settings-item-label">Code-Switching Mode</div>
+              <div class="settings-item-sub">Mixed-language detection</div>
+            </div>
+            <button class="toggle on" onclick="this.classList.toggle('on')"></button>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <div class="settings-section-title">Audio & Voice</div>
+          <div class="settings-item">
+            <div class="settings-item-icon icon-blue">🎙️</div>
+            <div class="settings-item-text">
+              <div class="settings-item-label">Microphone</div>
+              <div class="settings-item-sub">Enabled</div>
+            </div>
+            <button class="toggle on" onclick="this.classList.toggle('on')"></button>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-icon icon-teal">🔊</div>
+            <div class="settings-item-text">
+              <div class="settings-item-label">Audio Output</div>
+              <div class="settings-item-sub">Auto-play translations</div>
+            </div>
+            <button class="toggle" onclick="this.classList.toggle('on')"></button>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-icon icon-purple">🗣️</div>
+            <div class="settings-item-text">
+              <div class="settings-item-label">Voice Speed</div>
+              <div class="settings-item-sub">Normal</div>
+            </div>
+            <span class="settings-item-right">›</span>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <div class="settings-section-title">Features</div>
+          <div class="settings-item">
+            <div class="settings-item-icon icon-amber">💡</div>
+            <div class="settings-item-text">
+              <div class="settings-item-label">Context Suggestions</div>
+              <div class="settings-item-sub">Smart phrase recommendations</div>
+            </div>
+            <button class="toggle on" onclick="this.classList.toggle('on')"></button>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-icon icon-teal">🌴</div>
+            <div class="settings-item-text">
+              <div class="settings-item-label">Cultural Tips</div>
+              <div class="settings-item-sub">Show regional context</div>
+            </div>
+            <button class="toggle on" onclick="this.classList.toggle('on')"></button>
+          </div>
+          <div class="settings-item" onclick="goToScreen('screen-practice')">
+            <div class="settings-item-icon icon-blue">🔊</div>
+            <div class="settings-item-text">
+              <div class="settings-item-label">Pronunciation Practice</div>
+              <div class="settings-item-sub">Daily word exercises</div>
+            </div>
+            <span class="settings-item-right">›</span>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <div class="settings-section-title">Subscription</div>
+          <div class="settings-item" onclick="goToScreen('screen-subscription')">
+            <div class="settings-item-icon icon-amber">⭐</div>
+            <div class="settings-item-text">
+              <div class="settings-item-label">Upgrade to Pro</div>
+              <div class="settings-item-sub">Unlock unlimited translations & dialects</div>
+            </div>
+            <span class="settings-item-right" style="color:var(--amber)">›</span>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <div class="settings-section-title">About</div>
+          <div class="settings-item" onclick="showToast('Version 1.0.0 (build 42)')">
+            <div class="settings-item-icon icon-blue">ℹ️</div>
+            <div class="settings-item-text">
+              <div class="settings-item-label">App Version</div>
+              <div class="settings-item-sub">Dialekto v1.0.0</div>
+            </div>
+          </div>
+          <div class="settings-item" onclick="showToast('Feedback sent! Salamat 🙏')">
+            <div class="settings-item-icon icon-red">💬</div>
+            <div class="settings-item-text">
+              <div class="settings-item-label">Send Feedback</div>
+              <div class="settings-item-sub">Help us improve Dialekto</div>
+            </div>
+            <span class="settings-item-right">›</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <button class="nav-item" onclick="setNav(this,'screen-home')"><span class="nav-icon">🏠</span><span
+            class="nav-label">Home</span></button>
+        <button class="nav-item" onclick="setNav(this,'screen-phrases')"><span class="nav-icon">📚</span><span
+            class="nav-label">Phrases</span></button>
+        <button class="nav-item active" onclick="setNav(this,'screen-settings')"><span class="nav-icon">⚙️</span><span
+            class="nav-label">Settings</span></button>
+        <button class="nav-item" onclick="setNav(this,'screen-account')"><span class="nav-icon">👤</span><span
+            class="nav-label">Account</span></button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+       SCREEN 5 — ACCOUNT / HISTORY
+  ════════════════════════════════════════════════════════ -->
+    <div class="screen" id="screen-account">
+      <div class="status-bar"><span>9:41</span><span class="sb-icons">
+          <svg width="16" height="12" viewBox="0 0 24 18" fill="none">
+            <path d="M12 3C8 3 4.5 4.8 2 7.6L4 9.6C6 7.3 8.8 6 12 6s6 1.3 8 3.6l2-2C19.5 4.8 16 3 12 3z" fill="white"
+              opacity=".5" />
+            <path d="M12 8c-2.5 0-4.7 1-6.3 2.7l2 2C8.9 11.6 10.4 11 12 11s3.1.6 4.3 1.7l2-2C16.7 9 14.5 8 12 8z"
+              fill="white" opacity=".75" />
+            <path d="M12 13c-1.2 0-2.3.5-3.1 1.3l3.1 3.1 3.1-3.1C14.3 13.5 13.2 13 12 13z" fill="white" />
+          </svg>
+          <svg width="22" height="12" viewBox="0 0 33 16" fill="none">
+            <rect x="0.5" y="0.5" width="28" height="15" rx="3.5" stroke="white" stroke-opacity=".5" />
+            <rect x="2" y="2" width="22" height="12" rx="2" fill="white" />
+            <path d="M30 5v6a3 3 0 000-6z" fill="white" opacity=".4" />
+          </svg>
+        </span></div>
+      <div class="account-header">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:10px">
+          <button
+            style="background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;color:#fff;cursor:pointer;"
+            onclick="showToast('Edit profile opened')">Edit</button>
+        </div>
+        <div class="account-profile">
+          <div class="account-avatar">👤</div>
+          <div class="account-name">Juan dela Cruz</div>
+          <div class="account-email">juan@email.com</div>
+          <div class="sub-badge">⭐ FREE PLAN</div>
+        </div>
+      </div>
+
+      <div class="account-stats">
+        <div class="stat-item">
+          <div class="stat-num">42</div>
+          <div class="stat-lbl">Translations</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">8</div>
+          <div class="stat-lbl">Saved Phrases</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3</div>
+          <div class="stat-lbl">Dialects Used</div>
+        </div>
+      </div>
+
+      <div class="scroll-body" style="padding-top:16px; padding-bottom:90px">
+        <div style="padding:0 16px">
+          <button class="btn btn-primary btn-full" style="margin-bottom:10px"
+            onclick="goToScreen('screen-subscription')">⭐ Upgrade to Pro</button>
+
+          <div class="section-hd mt16">
+            <span class="section-title">Translation History</span>
+            <a class="section-link" onclick="showToast('Cleared!')">Clear all</a>
+          </div>
+
+          <div class="history-item">
+            <div class="history-icon">🗣️</div>
+            <div class="history-text">
+              <div class="history-original">Salamat po sa inyong tulong</div>
+              <div class="history-result">Salamat kaayo sa imong tabang (Cebuano)</div>
+              <div class="history-meta">Today, 9:02 AM · Voice · Filipino → Cebuano</div>
+            </div>
+            <button class="history-play" onclick="showToast('▶ Playing…')">▶</button>
+          </div>
+          <div class="history-item">
+            <div class="history-icon">⌨️</div>
+            <div class="history-text">
+              <div class="history-original">Saan ang pinakamalapit na ospital?</div>
+              <div class="history-result">Hain ang pinaka-asol nga ospital? (Ilocano)</div>
+              <div class="history-meta">Today, 8:45 AM · Text · Filipino → Ilocano</div>
+            </div>
+            <button class="history-play" onclick="showToast('▶ Playing…')">▶</button>
+          </div>
+          <div class="history-item">
+            <div class="history-icon">🗣️</div>
+            <div class="history-text">
+              <div class="history-original">Magkano po ito?</div>
+              <div class="history-result">Pila man kini? (Cebuano)</div>
+              <div class="history-meta">Yesterday, 3:12 PM · Voice · Filipino → Cebuano</div>
+            </div>
+            <button class="history-play" onclick="showToast('▶ Playing…')">▶</button>
+          </div>
+          <div class="history-item">
+            <div class="history-icon">⌨️</div>
+            <div class="history-text">
+              <div class="history-original">Kumain ka na ba?</div>
+              <div class="history-result">Naka-kaon ka na ba? (Cebuano)</div>
+              <div class="history-meta">Yesterday, 12:00 PM · Text · Filipino → Cebuano</div>
+            </div>
+            <button class="history-play" onclick="showToast('▶ Playing…')">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <button class="nav-item" onclick="setNav(this,'screen-home')"><span class="nav-icon">🏠</span><span
+            class="nav-label">Home</span></button>
+        <button class="nav-item" onclick="setNav(this,'screen-phrases')"><span class="nav-icon">📚</span><span
+            class="nav-label">Phrases</span></button>
+        <button class="nav-item" onclick="setNav(this,'screen-settings')"><span class="nav-icon">⚙️</span><span
+            class="nav-label">Settings</span></button>
+        <button class="nav-item active" onclick="setNav(this,'screen-account')"><span class="nav-icon">👤</span><span
+            class="nav-label">Account</span></button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+       SCREEN 6 — URGENT KIT
+  ════════════════════════════════════════════════════════ -->
+    <div class="screen" id="screen-urgent">
+      <div class="status-bar" style="background:#C0161A"><span>9:41</span><span class="sb-icons">
+          <svg width="16" height="12" viewBox="0 0 24 18" fill="none">
+            <path d="M12 3C8 3 4.5 4.8 2 7.6L4 9.6C6 7.3 8.8 6 12 6s6 1.3 8 3.6l2-2C19.5 4.8 16 3 12 3z" fill="white"
+              opacity=".5" />
+            <path d="M12 8c-2.5 0-4.7 1-6.3 2.7l2 2C8.9 11.6 10.4 11 12 11s3.1.6 4.3 1.7l2-2C16.7 9 14.5 8 12 8z"
+              fill="white" opacity=".75" />
+            <path d="M12 13c-1.2 0-2.3.5-3.1 1.3l3.1 3.1 3.1-3.1C14.3 13.5 13.2 13 12 13z" fill="white" />
+          </svg>
+          <svg width="22" height="12" viewBox="0 0 33 16" fill="none">
+            <rect x="0.5" y="0.5" width="28" height="15" rx="3.5" stroke="white" stroke-opacity=".5" />
+            <rect x="2" y="2" width="22" height="12" rx="2" fill="white" />
+            <path d="M30 5v6a3 3 0 000-6z" fill="white" opacity=".4" />
+          </svg>
+        </span></div>
+      <div class="urgent-header">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <button class="back-btn"
+            style="background:rgba(255,255,255,.2);border:none;border-radius:50%;width:34px;height:34px;color:#fff;font-size:18px;cursor:pointer;"
+            onclick="goBack()">←</button>
+          <div>
+            <div class="urgent-header-title">🆘 Urgent Kit</div>
+            <div class="urgent-header-sub">Tap any phrase to instantly play its audio</div>
+          </div>
+        </div>
+        <div
+          style="background:rgba(255,255,255,.15);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.25)">
+          <span style="font-size:16px">⚡</span>
+          <span style="font-size:13px;color:#fff;font-weight:500">Works offline — no internet needed</span>
+        </div>
+      </div>
+
+      <div class="scroll-body" style="padding:14px 14px 90px">
+        <div class="urgent-phrase-btn" onclick="showToast('▶ Saklolo! Help!')">
+          <div class="up-icon">🆘</div>
+          <div style="flex:1">
+            <div class="up-phrase">Saklolo! / Tabang!</div>
+            <div class="up-trans">Help! (Filipino / Cebuano)</div>
+          </div>
+          <button class="up-play">▶</button>
+        </div>
+        <div class="urgent-phrase-btn" onclick="showToast('▶ Playing…')">
+          <div class="up-icon">🚑</div>
+          <div style="flex:1">
+            <div class="up-phrase">Kailangan ko ng doktor</div>
+            <div class="up-trans">I need a doctor (Filipino)</div>
+          </div>
+          <button class="up-play">▶</button>
+        </div>
+        <div class="urgent-phrase-btn" onclick="showToast('▶ Playing…')">
+          <div class="up-icon">🔥</div>
+          <div style="flex:1">
+            <div class="up-phrase">Sunog! / May sunog!</div>
+            <div class="up-trans">Fire! (Filipino)</div>
+          </div>
+          <button class="up-play">▶</button>
+        </div>
+        <div class="urgent-phrase-btn" onclick="showToast('▶ Playing…')">
+          <div class="up-icon">🚔</div>
+          <div style="flex:1">
+            <div class="up-phrase">Tawagan mo ang pulis</div>
+            <div class="up-trans">Call the police (Filipino)</div>
+          </div>
+          <button class="up-play">▶</button>
+        </div>
+        <div class="urgent-phrase-btn" onclick="showToast('▶ Playing…')">
+          <div class="up-icon">😰</div>
+          <div style="flex:1">
+            <div class="up-phrase">Nawala ang aking bag</div>
+            <div class="up-trans">My bag is lost (Filipino)</div>
+          </div>
+          <button class="up-play">▶</button>
+        </div>
+        <div class="urgent-phrase-btn" onclick="showToast('▶ Playing…')">
+          <div class="up-icon">🏥</div>
+          <div style="flex:1">
+            <div class="up-phrase">Hain ang ospital?</div>
+            <div class="up-trans">Where is the hospital? (Cebuano)</div>
+          </div>
+          <button class="up-play">▶</button>
+        </div>
+        <div class="urgent-phrase-btn" onclick="showToast('▶ Playing…')">
+          <div class="up-icon">💊</div>
+          <div style="flex:1">
+            <div class="up-phrase">Naa koy alerdyi sa…</div>
+            <div class="up-trans">I am allergic to… (Cebuano)</div>
+          </div>
+          <button class="up-play">▶</button>
+        </div>
+        <div class="urgent-phrase-btn" onclick="showToast('▶ Playing…')">
+          <div class="up-icon">📞</div>
+          <div style="flex:1">
+            <div class="up-phrase">Puwede ko bang gumamit ng telepono?</div>
+            <div class="up-trans">May I use the phone? (Filipino)</div>
+          </div>
+          <button class="up-play">▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+       SCREEN 7 — PRONUNCIATION PRACTICE
+  ════════════════════════════════════════════════════════ -->
+    <div class="screen" id="screen-practice">
+      <div class="status-bar"><span>9:41</span><span class="sb-icons">
+          <svg width="16" height="12" viewBox="0 0 24 18" fill="none">
+            <path d="M12 3C8 3 4.5 4.8 2 7.6L4 9.6C6 7.3 8.8 6 12 6s6 1.3 8 3.6l2-2C19.5 4.8 16 3 12 3z" fill="white"
+              opacity=".5" />
+            <path d="M12 8c-2.5 0-4.7 1-6.3 2.7l2 2C8.9 11.6 10.4 11 12 11s3.1.6 4.3 1.7l2-2C16.7 9 14.5 8 12 8z"
+              fill="white" opacity=".75" />
+            <path d="M12 13c-1.2 0-2.3.5-3.1 1.3l3.1 3.1 3.1-3.1C14.3 13.5 13.2 13 12 13z" fill="white" />
+          </svg>
+          <svg width="22" height="12" viewBox="0 0 33 16" fill="none">
+            <rect x="0.5" y="0.5" width="28" height="15" rx="3.5" stroke="white" stroke-opacity=".5" />
+            <rect x="2" y="2" width="22" height="12" rx="2" fill="white" />
+            <path d="M30 5v6a3 3 0 000-6z" fill="white" opacity=".4" />
+          </svg>
+        </span></div>
+      <div class="top-bar">
+        <button class="back-btn" onclick="goBack()">←</button>
+        <span class="bar-title">🔊 Pronunciation Practice</span>
+      </div>
+
+      <div class="scroll-body" style="padding:0 0 90px">
+        <div style="padding:14px 16px 0;">
+          <div style="display:flex;gap:8px;margin-bottom:14px">
+            <select class="dialect-select" style="flex:1" id="practice-dialect" onchange="changePracticeWord()">
+              <option value="cebuano">Cebuano</option>
+              <option value="ilocano">Ilocano</option>
+              <option value="waray">Waray</option>
+              <option value="hiligaynon">Hiligaynon</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="practice-word">
+          <div class="pill pill-blue" style="margin-bottom:10px">Word of the day</div>
+          <div class="practice-word-text" id="practice-word">Maayong Buntag</div>
+          <div class="practice-phonetic" id="practice-phonetic">/ ma·a·yong bun·tag /</div>
+          <div style="font-size:13px;color:var(--grey-400);margin-bottom:16px" id="practice-meaning">Good morning</div>
+          <button class="practice-play-btn" onclick="showToast('▶ Listen to native speaker…')">▶ Hear
+            pronunciation</button>
+        </div>
+
+        <div class="wave-visual" id="wave-vis" style="margin:12px 16px">
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+        </div>
+
+        <div class="score-meter">
+          <div class="score-label">Your score</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+            <div class="score-bar-bg" style="flex:1">
+              <div class="score-bar-fill" id="score-fill" style="width:78%"></div>
+            </div>
+            <div class="score-pct" id="score-pct">78%</div>
+          </div>
+          <div class="score-sub">Good! Focus on the "bun" syllable for a perfect score.</div>
+        </div>
+
+        <div style="padding:14px 16px 0;display:flex;flex-direction:column;gap:10px">
+          <button class="btn btn-primary btn-full" onclick="practiceRecord()">🎙️ Record my pronunciation</button>
+          <button class="btn btn-secondary btn-full" onclick="nextWord()">Next word →</button>
+        </div>
+
+        <div style="padding:16px 16px 0">
+          <div class="section-title" style="margin-bottom:10px">Practice history</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div
+              style="background:var(--white);border:1px solid var(--grey-100);border-radius:10px;padding:11px 14px;display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div style="font-size:14px;font-weight:600">Maupay nga adlaw</div>
+                <div style="font-size:12px;color:var(--grey-400)">Good day · Waray</div>
+              </div>
+              <span style="font-size:13px;font-weight:700;color:var(--teal)">92%</span>
+            </div>
+            <div
+              style="background:var(--white);border:1px solid var(--grey-100);border-radius:10px;padding:11px 14px;display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div style="font-size:14px;font-weight:600">Naimbag a rabii</div>
+                <div style="font-size:12px;color:var(--grey-400)">Good evening · Ilocano</div>
+              </div>
+              <span style="font-size:13px;font-weight:700;color:var(--blue-600)">65%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+       SCREEN 8 — SUBSCRIPTION
+  ════════════════════════════════════════════════════════ -->
+    <div class="screen" id="screen-subscription">
+      <div class="status-bar"><span>9:41</span><span class="sb-icons">
+          <svg width="16" height="12" viewBox="0 0 24 18" fill="none">
+            <path d="M12 3C8 3 4.5 4.8 2 7.6L4 9.6C6 7.3 8.8 6 12 6s6 1.3 8 3.6l2-2C19.5 4.8 16 3 12 3z" fill="white"
+              opacity=".5" />
+            <path d="M12 8c-2.5 0-4.7 1-6.3 2.7l2 2C8.9 11.6 10.4 11 12 11s3.1.6 4.3 1.7l2-2C16.7 9 14.5 8 12 8z"
+              fill="white" opacity=".75" />
+            <path d="M12 13c-1.2 0-2.3.5-3.1 1.3l3.1 3.1 3.1-3.1C14.3 13.5 13.2 13 12 13z" fill="white" />
+          </svg>
+          <svg width="22" height="12" viewBox="0 0 33 16" fill="none">
+            <rect x="0.5" y="0.5" width="28" height="15" rx="3.5" stroke="white" stroke-opacity=".5" />
+            <rect x="2" y="2" width="22" height="12" rx="2" fill="white" />
+            <path d="M30 5v6a3 3 0 000-6z" fill="white" opacity=".4" />
+          </svg>
+        </span></div>
+      <div class="sub-hero">
+        <button
+          style="position:absolute;top:36px;left:20px;background:rgba(255,255,255,.18);border:none;border-radius:50%;width:34px;height:34px;color:#fff;font-size:18px;cursor:pointer;"
+          onclick="goBack()">←</button>
+        <div class="sub-hero-icon">⭐</div>
+        <div class="sub-hero-title">Dialekto Pro</div>
+        <div class="sub-hero-sub">Everything you need to communicate across the Philippines</div>
+      </div>
+
+      <div class="scroll-body" style="padding:0 0 90px">
+        <div style="padding:14px 16px 0">
+
+          <div class="plan-card featured" style="margin:0 0 10px">
+            <div class="plan-badge">MOST POPULAR</div>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div class="plan-name">Pro Monthly</div>
+                <div class="plan-price">₱149 <span>/ month</span></div>
+              </div>
+              <div
+                style="width:22px;height:22px;border-radius:50%;background:var(--blue-600);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700">
+                ✓</div>
+            </div>
+            <div class="plan-features">
+              <div class="plan-feature">Unlimited voice & text translations</div>
+              <div class="plan-feature">All 6 Philippine dialects</div>
+              <div class="plan-feature">Offline mode — all packs</div>
+              <div class="plan-feature">Audio output with native voices</div>
+              <div class="plan-feature">Advanced pronunciation feedback</div>
+              <div class="plan-feature">Unlimited phrase groups</div>
+            </div>
+          </div>
+
+          <div class="plan-card" style="margin:0 0 10px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div class="plan-name">Pro Annual</div>
+                <div class="plan-price">₱999 <span>/ year</span></div>
+              </div>
+              <span class="pill pill-teal">Save 44%</span>
+            </div>
+            <div class="plan-features">
+              <div class="plan-feature">Everything in Monthly</div>
+              <div class="plan-feature">Priority support</div>
+              <div class="plan-feature">Early access to new dialects</div>
+            </div>
+          </div>
+
+          <div class="plan-card" style="margin:0 0 16px">
+            <div>
+              <div class="plan-name">Free</div>
+              <div class="plan-price">₱0 <span>forever</span></div>
+            </div>
+            <div class="plan-features">
+              <div class="plan-feature">20 translations per day</div>
+              <div class="plan-feature">2 downloadable dialects</div>
+              <div class="plan-feature">Basic phrase library</div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-full" style="margin-bottom:8px"
+            onclick="showToast('Subscribed! Salamat sa iyong tiwala 🎉')">Start Pro Monthly — ₱149</button>
+          <button class="btn btn-ghost btn-full" onclick="goBack()">Continue with Free</button>
+
+          <div style="text-align:center;margin-top:12px;font-size:11px;color:var(--grey-400)">
+            Cancel anytime · Auto-renews · Secure payment
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+  </div><!-- end .shell -->
+
+  <script src="./assets/scripts.js"></script>
+</body>
+
+</html>
