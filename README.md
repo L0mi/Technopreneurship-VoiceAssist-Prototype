@@ -82,13 +82,13 @@ Dialekto/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/dialekto.git
+git clone https://github.com/L0mi/Technopreneurship-VoiceAssist-Prototype.git
 ```
 
 2. Open the project folder:
 
 ```bash
-cd dialekto
+cd Technopreneurship-VoiceAssist-Prototype
 ```
 
 3. Launch the application:
